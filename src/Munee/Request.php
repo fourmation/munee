@@ -294,7 +294,7 @@ class Request
             // Using RegEx?
             if (! empty($paramOptions['regex'])) {
                 if (! preg_match("%^(?:{$paramOptions['regex']})$%", $value)) {
-                    throw new ErrorException("'{$value}' is not a valid value for: {$param}");
+                    throw new BadRequestException("'{$value}' is not a valid value for: {$param}");
                 }
             }
 
