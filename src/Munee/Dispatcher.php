@@ -102,6 +102,13 @@ class Dispatcher
             }
 
             return 'Compilation Error: ' . static::getErrors($e);
+        } catch (BadRequestException $e) {
+            if (isset($headerController) && $headerController instanceof Asset\HeaderSetter) {
+                $headerController->statusCode('HTTP/1.0', 400, 'Bad Request');
+                $headerController->headerField('Status', '400 Bad Request');
+            }
+
+            return 'Not Found Error: ' . static::getErrors($e);
         } catch (ErrorException $e) {
             return 'Error: ' . static::getErrors($e);
         }
