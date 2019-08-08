@@ -10,7 +10,7 @@ namespace Munee\Asset\Filter\Css;
 
 use Munee\Asset\Filter;
 use Munee\Utils;
-use CSSmin;
+use tubalmartin\CssMin\Minifier as CSSmin;
 
 /**
  * Minify Filter for CSS

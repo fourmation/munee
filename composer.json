@@ -1,13 +1,18 @@
 {
-    "name": "meenie/munee",
+    "name": "fourmation/munee",
     "description": "Standalone PHP 5.3 Asset Optimisation & Manipulation - On-The-Fly Image Resizing, On-the-fly LESS, SCSS, CoffeeScript Compiling, CSS & JavaScript Combining/Minifying, and Smart Client Side and Server Side Caching",
     "keywords": ["php","less","scss","coffeescript","cache","asset optimisation","asset optimization","asset management","css","javascript","lessphp","scssphp","image manipulation"],
-    "homepage": "http://mun.ee",
+    "homepage": "https://github.com/fourmation/munee",
     "license": "MIT",
     "authors": [
         {
             "name": "Cody Lundquist",
             "email": "cody.lundquist@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Jordan Mele",
+            "email": "SiliconSoldier@outlook.com.au",
             "role": "Developer"
         }
     ],
@@ -19,14 +24,14 @@
     },
     "require": {
         "php": ">=5.3.2",
-        "leafo/lessphp": "0.5.0",
-        "leafo/scssphp": "0.1.1",
-        "tedivm/jshrink": "1.0.1",
-        "imagine/imagine": "0.6.2",
-        "coffeescript/coffeescript": "1.3.1",
-        "meenie/javascript-packer": "1.1",
-        "tubalmartin/cssmin": "~2.4",
-        "sabberworm/php-css-parser": "~6.0"
+        "leafo/lessphp": "^0.5.0",
+        "leafo/scssphp": "^0.1.1",
+        "tedivm/jshrink": "^1.0.1",
+        "imagine/imagine": "^1.2.2",
+        "coffeescript/coffeescript": "^1.3.1",
+        "meenie/javascript-packer": "^1.1",
+        "tubalmartin/cssmin": "^4.1.1",
+        "sabberworm/php-css-parser": "^8.3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.3"
