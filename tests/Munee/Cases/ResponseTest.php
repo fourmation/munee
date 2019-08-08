@@ -11,13 +11,14 @@ namespace Munee\Cases;
 use Munee\Asset\HeaderSetter;
 use Munee\Response;
 use Munee\Mocks\MockAssetType;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\Response Class
  *
  * @author Cody Lundquist
  */
-class ResponseTest extends \PHPUnit_Framework_TestCase
+class ResponseTest extends TestCase
 {
     /**
      * @var int
@@ -29,7 +30,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(\Munee\ErrorException::class);
         new Response(new \stdClass());
     }
 
@@ -55,7 +56,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($checkHeaders['Cache-Control'], $setHeaders['Cache-Control']);
         unset($setHeaders['Cache-Control']);
-        $this->assertContains($checkHeaders['Content-Type'], $setHeaders['Content-Type']);
+        $this->assertStringContainsString($checkHeaders['Content-Type'], $setHeaders['Content-Type']);
         unset($setHeaders['Content-Type']);
         $this->assertSame($checkHeaders['Last-Modified'], $setHeaders['Last-Modified']);
         unset($setHeaders['Last-Modified']);
@@ -127,7 +128,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($checkHeaders['Cache-Control'], $setHeaders['Cache-Control']);
         unset($setHeaders['Cache-Control']);
-        $this->assertContains($checkHeaders['Content-Type'], $setHeaders['Content-Type']);
+        $this->assertStringContainsString($checkHeaders['Content-Type'], $setHeaders['Content-Type']);
         unset($setHeaders['Content-Type']);
         $this->assertSame($checkHeaders['Last-Modified'], $setHeaders['Last-Modified']);
         unset($setHeaders['Last-Modified']);

@@ -10,20 +10,21 @@ namespace Munee\Cases;
 
 use Munee\Request;
 use Munee\Utils;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\Request Class
  *
  * @author Cody Lundquist
  */
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestTest extends TestCase
 {
     /**
      * Set Up
      *
      * Create some tmp asset files
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $jsDir = WEBROOT . DS . 'js';
         Utils::createDir($jsDir);
@@ -37,7 +38,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      *
      * Remove the tmp asset files
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         Utils::removeDir(WEBROOT . DS . 'js');
     }
@@ -49,7 +50,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $Request = new Request();
 
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(\Munee\ErrorException::class);
         $Request->init();
     }
 
@@ -90,7 +91,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         
         $Request = new Request();
 
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(\Munee\ErrorException::class);
         $Request->init();
     }
 
@@ -220,7 +221,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
             )
         );
 
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(\Munee\ErrorException::class);
         $Request->parseParams($allowedParams);
     }
 }

@@ -1,5 +1,5 @@
 {
-    "name": "meenie/Munee",
+    "name": "meenie/munee",
     "description": "Standalone PHP 5.3 Asset Optimisation & Manipulation - On-The-Fly Image Resizing, On-the-fly LESS, SCSS, CoffeeScript Compiling, CSS & JavaScript Combining/Minifying, and Smart Client Side and Server Side Caching",
     "keywords": ["php","less","scss","coffeescript","cache","asset optimisation","asset optimization","asset management","css","javascript","lessphp","scssphp","image manipulation"],
     "homepage": "http://mun.ee",
@@ -27,5 +27,8 @@
         "meenie/javascript-packer": "1.1",
         "tubalmartin/cssmin": "~2.4",
         "sabberworm/php-css-parser": "~6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.3"
     }
 }

@@ -11,18 +11,19 @@ namespace Munee\Cases\Asset;
 use Munee\Asset\Registry;
 use Munee\Mocks\MockRequest;
 use Munee\Mocks\MockAssetType;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\asset\Registry Class
  *
  * @author Cody Lundquist
  */
-class RegistryTest extends \PHPUnit_Framework_TestCase
+class RegistryTest extends TestCase
 {
     /**
      * Register some extensions for each test
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         Registry::register(array('foo', 'bar'), function ($Request) {
             return new MockAssetType($Request);
@@ -32,7 +33,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
     /**
      * Remove the extensions after each test
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         Registry::unRegister(array('foo', 'bar'));
     }
@@ -54,7 +55,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      */
     public function testExtensionNotSupported()
     {
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(\Munee\ErrorException::class);
         Registry::getSupportedExtensions('nope');
     }
 
@@ -65,7 +66,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
     {
         $MockRequest = new MockRequest();
         $MockRequest->ext = 'nope';
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(\Munee\ErrorException::class);
         Registry::getClass($MockRequest);
     }
 

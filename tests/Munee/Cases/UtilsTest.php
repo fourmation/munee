@@ -9,13 +9,14 @@
 namespace Munee\Cases;
 
 use Munee\Utils;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\Utils Class
  *
  * @author Cody Lundquist
  */
-class UtilsTest extends \PHPUnit_Framework_TestCase
+class UtilsTest extends TestCase
 {
     /**
      * Can Create/Remove Directories?
