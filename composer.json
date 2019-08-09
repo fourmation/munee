@@ -18,9 +18,14 @@
     ],
     "autoload": {
         "psr-4": {
-            "Munee\\": "src/Munee"
+            "Fourmation\\Munee\\": "src/Munee"
         },
         "files": ["config/bootstrap.php"]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Fourmation\\Munee\\": "tests/Munee"
+        }
     },
     "require": {
         "php": ">=5.3.2",

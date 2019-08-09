@@ -6,10 +6,11 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee;
+namespace Fourmation\Munee;
 
-use Munee\ErrorException;
-use Munee\Asset\Registry;
+use \Fourmation\Munee\Asset\NotFoundException;
+use \Fourmation\Munee\Asset\Registry;
+use \Fourmation\Munee\ErrorException;
 
 /**
  * Munee Request Class
@@ -149,7 +150,7 @@ class Request
      * Parses the $rawFiles and does sanity checks
      *
      * @throws ErrorException
-     * @throws Asset\NotFoundException
+     * @throws NotFoundException
      */
     public function init()
     {
@@ -271,7 +272,7 @@ class Request
      *
      * @return string|array
      *
-     * @throws \Munee\ErrorException
+     * @throws ErrorException
      */
     protected function getParamValue($param, $paramOptions, $value)
     {

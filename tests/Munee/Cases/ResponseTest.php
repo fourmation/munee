@@ -6,12 +6,13 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Cases;
+namespace Fourmation\Munee\Cases;
 
-use Munee\Asset\HeaderSetter;
-use Munee\Response;
-use Munee\Mocks\MockAssetType;
-use PHPUnit\Framework\TestCase;
+use \Fourmation\Munee\Asset\HeaderSetter;
+use \Fourmation\Munee\ErrorException;
+use \Fourmation\Munee\Mocks\MockAssetType;
+use \Fourmation\Munee\Response;
+use \PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\Response Class
@@ -30,7 +31,7 @@ class ResponseTest extends TestCase
      */
     public function testConstruct()
     {
-        $this->expectException(\Munee\ErrorException::class);
+        $this->expectException(ErrorException::class);
         new Response(new \stdClass());
     }
 

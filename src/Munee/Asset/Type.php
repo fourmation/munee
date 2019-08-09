@@ -6,13 +6,14 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset;
+namespace Fourmation\Munee\Asset;
 
-use Munee\ErrorException;
-use Munee\Request;
-use Munee\Response;
-use Munee\Utils;
-use Munee\Asset\NotFoundException;
+use \Fourmation\Munee\Asset\Filter;
+use \Fourmation\Munee\Asset\NotFoundException;
+use \Fourmation\Munee\ErrorException;
+use \Fourmation\Munee\Request;
+use \Fourmation\Munee\Response;
+use \Fourmation\Munee\Utils;
 
 /**
  * Base Asset Class
@@ -60,14 +61,14 @@ abstract class Type
     /**
      * Reference to the \Munee\Request class
      *
-     * @var \Munee\Request
+     * @var Request
      */
     protected $request;
     
     /**
      * Reference to the \Munee\Response class
      *
-     * @var \Munee\Response
+     * @var Response
      */
     protected $response;
 
@@ -79,7 +80,7 @@ abstract class Type
     /**
      * Constructor
      *
-     * @param \Munee\Request $Request
+     * @param Request $Request
      *
      * @throws NotFoundException
      */
@@ -92,7 +93,7 @@ abstract class Type
         $assetShortName = preg_replace('%^.*\\\\%','', get_class($this));
         $allowedParams = array();
         foreach (array_keys($rawParams) as $filterName) {
-            $filterClass = 'Munee\\Asset\\Filter\\' . $assetShortName . '\\' . ucfirst($filterName);
+            $filterClass = Filter::class . '\\' . $assetShortName . '\\' . ucfirst($filterName);
             if (class_exists($filterClass)) {
                 $Filter = new $filterClass();
                 $allowedParams += $Filter->getAllowedParams();
@@ -143,7 +144,7 @@ abstract class Type
      *
      * @param $Response
      *
-     * @throws \Munee\ErrorException
+     * @throws ErrorException
      */
     public function setResponse($Response)
     {

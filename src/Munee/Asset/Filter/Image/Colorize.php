@@ -6,11 +6,10 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Filter\Image;
+namespace Fourmation\Munee\Asset\Filter\Image;
 
-use Munee\Asset\Filter;
-use Imagine\Gd\Imagine;
-use Imagine\Image\Color;
+use \Fourmation\Munee\Asset\Filter;
+use \Imagine\Gd\Imagine;
 
 /**
  * Colorize Filter for Images

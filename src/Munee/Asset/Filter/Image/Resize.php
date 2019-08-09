@@ -6,14 +6,17 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Filter\Image;
+namespace Fourmation\Munee\Asset\Filter\Image;
 
-use Munee\Asset\Filter;
-use Munee\ErrorException;
-use Imagine\Image\ImageInterface;
-use Imagine\Image\Box;
-use Imagine\Image\Palette\RGB;
-use Imagine\Image\Point;
+use \Fourmation\Munee\Asset\Filter;
+use \Fourmation\Munee\ErrorException;
+use \Imagine\Gd\Imagine as GdImagine;
+use \Imagine\Gmagick\Imagine as GmagickImagine;
+use \Imagine\Image\Box;
+use \Imagine\Image\ImageInterface;
+use \Imagine\Image\Palette\RGB;
+use \Imagine\Image\Point;
+use \Imagine\Imagick\Imagine as ImagickImagine;
 
 /**
  * Resize Filter to resize/crop/fill/stretch images
@@ -102,13 +105,13 @@ class Resize extends Filter
         }
         switch (strtolower($imageOptions['imageProcessor'])) {
             case 'gd':
-                $Imagine = new \Imagine\Gd\Imagine();
+                $Imagine = new GdImagine();
                 break;
             case 'imagick':
-                $Imagine = new \Imagine\Imagick\Imagine();
+                $Imagine = new ImagickImagine();
                 break;
             case 'gmagick':
-                $Imagine = new \Imagine\Gmagick\Imagine();
+                $Imagine = new GmagickImagine();
                 break;
             default:
                 throw new ErrorException('Unsupported imageProcessor config value: ' . $imageOptions['imageProcessor']);

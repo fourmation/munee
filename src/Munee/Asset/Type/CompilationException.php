@@ -6,9 +6,9 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Type;
+namespace Fourmation\Munee\Asset\Type;
 
-use Munee\ErrorException;
+use \Fourmation\Munee\ErrorException;
 
 /**
  * Class CompilationException

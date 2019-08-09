@@ -6,11 +6,12 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Cases;
+namespace Fourmation\Munee\Cases;
 
-use Munee\Request;
-use Munee\Utils;
-use PHPUnit\Framework\TestCase;
+use \Fourmation\Munee\ErrorException;
+use \Fourmation\Munee\Request;
+use \Fourmation\Munee\Utils;
+use \PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\Request Class
@@ -50,7 +51,7 @@ class RequestTest extends TestCase
     {
         $Request = new Request();
 
-        $this->expectException(\Munee\ErrorException::class);
+        $this->expectException(ErrorException::class);
         $Request->init();
     }
 
@@ -91,7 +92,7 @@ class RequestTest extends TestCase
         
         $Request = new Request();
 
-        $this->expectException(\Munee\ErrorException::class);
+        $this->expectException(ErrorException::class);
         $Request->init();
     }
 
@@ -221,7 +222,7 @@ class RequestTest extends TestCase
             )
         );
 
-        $this->expectException(\Munee\ErrorException::class);
+        $this->expectException(ErrorException::class);
         $Request->parseParams($allowedParams);
     }
 }

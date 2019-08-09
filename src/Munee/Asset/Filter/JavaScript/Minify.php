@@ -6,10 +6,10 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Filter\JavaScript;
+namespace Fourmation\Munee\Asset\Filter\JavaScript;
 
-use Munee\Asset\Filter;
-use JShrink\Minifier;
+use \Fourmation\Munee\Asset\Filter;
+use \JShrink\Minifier;
 
 /**
  * Minify Filter for JavaScript

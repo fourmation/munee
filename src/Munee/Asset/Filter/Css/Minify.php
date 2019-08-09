@@ -6,11 +6,11 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Filter\Css;
+namespace Fourmation\Munee\Asset\Filter\Css;
 
-use Munee\Asset\Filter;
-use Munee\Utils;
-use tubalmartin\CssMin\Minifier as CSSmin;
+use \Fourmation\Munee\Asset\Filter;
+use \Fourmation\Munee\Utils;
+use \tubalmartin\CssMin\Minifier as CSSmin;
 
 /**
  * Minify Filter for CSS

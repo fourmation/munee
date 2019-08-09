@@ -6,7 +6,11 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee;
+namespace Fourmation\Munee;
+
+use \Fourmation\Munee\Asset\NotFoundException;
+use \Fourmation\Munee\Asset\Type\CompilationException;
+use \Fourmation\Munee\Request;
 
 /**
  * The outermost layer of Munee that wraps everything in a Try/Catch block
@@ -89,14 +93,14 @@ class Dispatcher
              * otherwise return the content
              */
             return $Response->notModified ? null : $Response->render();
-        } catch (Asset\NotFoundException $e) {
+        } catch (NotFoundException $e) {
             if (isset($headerController) && $headerController instanceof Asset\HeaderSetter) {
                 $headerController->statusCode('HTTP/1.0', 404, 'Not Found');
                 $headerController->headerField('Status', '404 Not Found');
             }
 
             return 'Not Found Error: ' . static::getErrors($e);
-        } catch (Asset\Type\CompilationException $e) {
+        } catch (CompilationException $e) {
             if (isset($AssetType) &&  $AssetType instanceof Asset\Type) {
                 $AssetType->cleanUpAfterError();
             }

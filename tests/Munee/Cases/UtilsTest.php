@@ -6,10 +6,10 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Cases;
+namespace Fourmation\Munee\Cases;
 
-use Munee\Utils;
-use PHPUnit\Framework\TestCase;
+use \Fourmation\Munee\Utils;
+use \PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\Utils Class

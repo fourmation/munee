@@ -6,11 +6,11 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Type;
+namespace Fourmation\Munee\Asset\Type;
 
-use Munee\ErrorException;
-use Munee\Asset\Type;
-use Munee\Utils;
+use \Fourmation\Munee\Asset\Type;
+use \Fourmation\Munee\ErrorException;
+use \Fourmation\Munee\Utils;
 
 /**
  * Handles Images
