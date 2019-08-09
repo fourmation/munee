@@ -57,7 +57,7 @@ class ResponseTest extends TestCase
 
         $this->assertSame($checkHeaders['Cache-Control'], $setHeaders['Cache-Control']);
         unset($setHeaders['Cache-Control']);
-        $this->assertStringContainsString($checkHeaders['Content-Type'], $setHeaders['Content-Type']);
+        $this->assertContains($checkHeaders['Content-Type'], $setHeaders['Content-Type']);
         unset($setHeaders['Content-Type']);
         $this->assertSame($checkHeaders['Last-Modified'], $setHeaders['Last-Modified']);
         unset($setHeaders['Last-Modified']);
@@ -129,7 +129,7 @@ class ResponseTest extends TestCase
 
         $this->assertSame($checkHeaders['Cache-Control'], $setHeaders['Cache-Control']);
         unset($setHeaders['Cache-Control']);
-        $this->assertStringContainsString($checkHeaders['Content-Type'], $setHeaders['Content-Type']);
+        $this->assertContains($checkHeaders['Content-Type'], $setHeaders['Content-Type']);
         unset($setHeaders['Content-Type']);
         $this->assertSame($checkHeaders['Last-Modified'], $setHeaders['Last-Modified']);
         unset($setHeaders['Last-Modified']);
