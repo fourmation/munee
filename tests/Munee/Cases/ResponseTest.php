@@ -163,7 +163,7 @@ class ResponseTest extends TestCase
      */
     protected function getHeaders()
     {
-        $rawHeaders = xdebug_get_headers();
+        $rawHeaders = \xdebug_get_headers();
         $ret = [];
         foreach ($rawHeaders as $header) {
             $headerParts = explode(':', $header, 2);

@@ -25,7 +25,7 @@ class RequestTest extends TestCase
      *
      * Create some tmp asset files
      */
-    protected function setUp(): void
+    protected function setUp()
     {
         $jsDir = WEBROOT . DS . 'js';
         Utils::createDir($jsDir);
@@ -39,7 +39,7 @@ class RequestTest extends TestCase
      *
      * Remove the tmp asset files
      */
-    protected function tearDown(): void
+    protected function tearDown()
     {
         Utils::removeDir(WEBROOT . DS . 'js');
     }

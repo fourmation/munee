@@ -36,3 +36,4 @@ echo Dispatcher::run(new Request([
 ## Unit Tests
 
 Tests are located in `/tests` and can be run with `./vendor/bin/phpunit`.
+You'll need to have XDebug installed, as it is required to test response headers.

@@ -24,7 +24,7 @@ class RegistryTest extends TestCase
     /**
      * Register some extensions for each test
      */
-    protected function setUp(): void
+    protected function setUp()
     {
         Registry::register([ 'foo', 'bar' ], function ($Request) {
             return new MockAssetType($Request);
@@ -34,7 +34,7 @@ class RegistryTest extends TestCase
     /**
      * Remove the extensions after each test
      */
-    protected function tearDown(): void
+    protected function tearDown()
     {
         Registry::unRegister([ 'foo', 'bar' ]);
     }
