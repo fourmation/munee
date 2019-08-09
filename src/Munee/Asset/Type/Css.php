@@ -29,10 +29,10 @@ class Css extends Type
      *
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'lessifyAllCss' => false,
-        'scssifyAllCss' => false
-    );
+        'scssifyAllCss' => false,
+    ];
 
     /**
      * Set additional headers just for CSS
@@ -240,7 +240,7 @@ class Css extends Type
             }
 
             $url = $basePath . '/' . $originalUrl;
-            $url = str_replace(array('../', './'), '', $url);
+            $url = str_replace([ '../', './' ], '', $url);
         }
 
         // If not using URL Rewrite

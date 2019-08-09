@@ -20,7 +20,7 @@ abstract class Filter
      *
      * @var array
      */
-    protected $allowedParams = array();
+    protected $allowedParams = [];
 
     /**
      * Getter for $allowedParams

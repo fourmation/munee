@@ -77,8 +77,8 @@ class UtilsTest extends TestCase
         $this->assertTrue(Utils::isSerialized($serializedFalse, $isFalse));
         $this->assertFalse($isFalse);
 
-        $checkArray = array('foo' => 'bar');
-        $testArray = array();
+        $checkArray = [ 'foo' => 'bar' ];
+        $testArray = [];
         Utils::isSerialized('a:1:{s:3:"foo";s:3:"bar";}', $testArray);
         $this->assertSame($checkArray, $testArray);
     }

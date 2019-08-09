@@ -22,7 +22,7 @@ class Registry
     /**
      * @var mixed[][] Registered Classes
      */
-    protected static $_registry = array();
+    protected static $_registry = [];
 
     /**
      * Register a resolver with a list of extensions

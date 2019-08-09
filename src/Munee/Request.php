@@ -38,35 +38,35 @@ class Request
      *
      * @var array
      */
-    public $params = array();
+    public $params = [];
 
     /**
      * Stores the array of files passed in
      *
      * @var array
      */
-    public $files = array();
+    public $files = [];
 
     /**
      * Stores the array of Request Options
      *
      * @var array
      */
-    public $options = array();
+    public $options = [];
 
     /**
      * Stores the array of Raw $_GET parameters
      *
      * @var array
      */
-    protected $rawParams = array();
+    protected $rawParams = [];
 
     /**
      * Stores the array of allowed parameters for the particular asset being processed
      *
      * @var array
      */
-    protected $allowedParams = array();
+    protected $allowedParams = [];
     
     /**
      * Stores the string of raw files passed in from $_GET
@@ -80,7 +80,7 @@ class Request
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->options = $options;
         $this->rawFiles = isset($_GET['files']) ? $_GET['files'] : '';
@@ -225,7 +225,7 @@ class Request
         foreach ($this->allowedParams as $param => $options) {
             $this->params[$param] = null;
             if (! empty($options['arguments'])) {
-                $this->params[$param] = array();
+                $this->params[$param] = [];
                 foreach ($options['arguments'] as $arg => $opts) {
                     if (! empty($opts['default'])) {
                         $cast = ! empty($opts['cast']) ? $opts['cast'] : 'string';
@@ -250,7 +250,7 @@ class Request
     protected function getParamOptions($checkParam)
     {
         if (isset($this->allowedParams[$checkParam])) {
-            return array('param' => $checkParam, 'options' => $this->allowedParams[$checkParam]);
+            return [ 'param' => $checkParam, 'options' => $this->allowedParams[$checkParam] ];
         } else {
             foreach ($this->allowedParams as $param => $options) {
                 if (! empty($options['alias']) && in_array($checkParam, (array) $options['alias'])) {
@@ -277,7 +277,7 @@ class Request
     protected function getParamValue($param, $paramOptions, $value)
     {
         if (! empty($paramOptions['arguments'])) {
-            $ret = array();
+            $ret = [];
             foreach ($paramOptions['arguments'] as $arg => $opts) {
                 $p = $arg;
                 if (! empty($opts['alias'])) {
@@ -321,7 +321,7 @@ class Request
                 $value = (integer) $value;
                 break;
             case 'boolean';
-                $value = in_array($value, array('true', 't', 'yes', 'y'));
+                $value = in_array($value, [ 'true', 't', 'yes', 'y' ]);
                 break;
             case 'string':
             default:

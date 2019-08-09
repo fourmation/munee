@@ -24,7 +24,7 @@ class Image extends Type
      *
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         // How many filters can be done within the `allowedFiltersTimeLimit`
         'numberOfAllowedFilters' => 3,
         // Number of seconds - default is 5 minutes
@@ -41,8 +41,8 @@ class Image extends Type
          * Imagick
          * Gmagick
          */
-        'imageProcessor' => 'GD'
-    );
+        'imageProcessor' => 'GD',
+    ];
 
     /**
      * Stores the specific placeholder that will be used for this requested asset, if any.
@@ -155,7 +155,7 @@ class Image extends Type
         $cachedImages = glob($pathInfo['dirname'] . DS . $fileNameHash . '*');
 
         if (! is_array($cachedImages)) {
-            $cachedImages = array();
+            $cachedImages = [];
         }
 
         // Loop through and remove the ones that are older than the time limit
@@ -187,13 +187,13 @@ class Image extends Type
         if (! empty($this->options['placeholders'])) {
             // If it's a string, use the image for all missing images.
             if (is_string($this->options['placeholders'])) {
-                $this->options['placeholders'] = array('*' => $this->options['placeholders']);
+                $this->options['placeholders'] = [ '*' => $this->options['placeholders'] ];
             }
 
             foreach ($this->options['placeholders'] as $path => $placeholder) {
                 // Setup path for regex
                 $escapedWebroot = preg_quote($this->request->webroot);
-                $regex = '^' . $escapedWebroot . str_replace(array('*', $this->request->webroot), array('.*?', ''), $path) . '$';
+                $regex = '^' . $escapedWebroot . str_replace([ '*', $this->request->webroot ], [ '.*?', '' ], $path) . '$';
                 if (preg_match("%{$regex}%", $file)) {
                     if ('http' == substr($placeholder, 0, 4)) {
                         $ret = $this->getImageByUrl($placeholder);

@@ -23,13 +23,13 @@ class Grayscale extends Filter
      *
      * @var array
      */
-    protected $allowedParams = array(
-        'grayscale' => array(
+    protected $allowedParams = [
+        'grayscale' => [
             'regex' => 'true|false|t|f|yes|no|y|n',
             'default' => 'false',
-            'cast' => 'boolean'
-        )
-    );
+            'cast' => 'boolean',
+        ]
+    ];
 
     /**
      * Turn an image Grayscale

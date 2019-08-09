@@ -23,13 +23,13 @@ class Minify extends Filter
      *
      * @var array
      */
-    protected $allowedParams = array(
-        'minify' => array(
+    protected $allowedParams = [
+        'minify' => [
             'regex' => 'true|false|t|f|yes|no|y|n',
             'default' => 'false',
-            'cast' => 'boolean'
-        )
-    );
+            'cast' => 'boolean',
+        ]
+    ];
 
     /**
      * JavaScript Minification

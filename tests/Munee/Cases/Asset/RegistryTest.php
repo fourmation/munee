@@ -26,7 +26,7 @@ class RegistryTest extends TestCase
      */
     protected function setUp(): void
     {
-        Registry::register(array('foo', 'bar'), function ($Request) {
+        Registry::register([ 'foo', 'bar' ], function ($Request) {
             return new MockAssetType($Request);
         });
     }
@@ -36,7 +36,7 @@ class RegistryTest extends TestCase
      */
     protected function tearDown(): void
     {
-        Registry::unRegister(array('foo', 'bar'));
+        Registry::unRegister([ 'foo', 'bar' ]);
     }
 
     /**
@@ -76,7 +76,7 @@ class RegistryTest extends TestCase
      */
     public function testSupportedExtensions()
     {
-        $checkExtensions = array('foo', 'bar');
+        $checkExtensions = [ 'foo', 'bar' ];
         $supportedExtensions = Registry::getSupportedExtensions('bar');
 
         $this->assertSame($checkExtensions, $supportedExtensions);
@@ -89,7 +89,7 @@ class RegistryTest extends TestCase
     {
         Registry::unRegister('bar');
 
-        $checkExtensions = array('foo');
+        $checkExtensions = [ 'foo' ];
         $supportedExtensions = Registry::getSupportedExtensions('foo');
 
         $this->assertSame($checkExtensions, $supportedExtensions);

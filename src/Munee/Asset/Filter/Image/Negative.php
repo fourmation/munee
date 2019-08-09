@@ -23,12 +23,12 @@ class Negative extends Filter
      *
      * @var array
      */
-    protected $allowedParams = array(
-        'negative' => array(
+    protected $allowedParams = [
+        'negative' => [
             'regex' => 'true|false|t|f|yes|no|y|n',
             'cast' => 'string'
-        )
-    );
+        ]
+    ];
 
     /**
      * Turn an image Negative

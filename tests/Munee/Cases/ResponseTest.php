@@ -46,7 +46,7 @@ class ResponseTest extends TestCase
         $Response->setHeaderController(new HeaderSetter());
         $Response->setHeaders(0);
 
-        $checkHeaders = array();
+        $checkHeaders = [];
         $checkHeaders['Cache-Control'] = 'max-age=0, must-revalidate';
         $checkHeaders['Content-Type'] = 'text/test';
         $checkHeaders['Last-Modified'] = gmdate('D, d M Y H:i:s', $this->lastModifiedTime) . ' GMT';
@@ -90,7 +90,7 @@ class ResponseTest extends TestCase
         $Response->setHeaderController(new HeaderSetter());
         $Response->setHeaders(0);
 
-        $checkHeaders = array();
+        $checkHeaders = [];
         $setHeaders = $this->getHeaders();
 
         $this->assertSame($checkHeaders, $setHeaders);
@@ -118,7 +118,7 @@ class ResponseTest extends TestCase
         $Response->setHeaderController(new HeaderSetter());
         $Response->setHeaders(0);
 
-        $checkHeaders = array();
+        $checkHeaders = [];
         $checkHeaders['Cache-Control'] = 'max-age=0, must-revalidate';
         $checkHeaders['Content-Type'] = 'text/test';
         $checkHeaders['Last-Modified'] = gmdate('D, d M Y H:i:s', $this->lastModifiedTime) . ' GMT';
@@ -164,7 +164,7 @@ class ResponseTest extends TestCase
     protected function getHeaders()
     {
         $rawHeaders = xdebug_get_headers();
-        $ret = array();
+        $ret = [];
         foreach ($rawHeaders as $header) {
             $headerParts = explode(':', $header, 2);
             if (2 == count($headerParts)) {

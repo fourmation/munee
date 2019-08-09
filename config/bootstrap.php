@@ -39,20 +39,20 @@ if (function_exists('mb_internal_encoding')) {
 /**
  * Register the CSS Asset Class with the extensions .css, .less, and .scss
  */
-Registry::register(array('css', 'less', 'scss'), function (Request $Request) {
+Registry::register([ 'css', 'less', 'scss' ], function (Request $Request) {
     return new Css($Request);
 });
 
 /**
  * Register the JavaScript Asset Class with the extension .js
  */
-Registry::register(array('js', 'coffee'), function (Request $Request) {
+Registry::register([ 'js', 'coffee' ], function (Request $Request) {
     return new JavaScript($Request);
 });
 
 /**
  * Register the Image Asset Class with the extensions .jpg, .jpeg, .gif, and .png
  */
-Registry::register(array('jpg', 'jpeg', 'gif', 'png'), function (Request $Request) {
+Registry::register([ 'jpg', 'jpeg', 'gif', 'png' ], function (Request $Request) {
     return new Image($Request);
 });

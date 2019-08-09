@@ -23,12 +23,12 @@ class Colorize extends Filter
      *
      * @var array
      */
-    protected $allowedParams = array(
-        'colorize' => array(
+    protected $allowedParams = [
+        'colorize' => [
             'regex' => '[A-Fa-f0-9]{3}$|^[A-Fa-f0-9]{6}',
-            'cast' => 'string'
-        )
-    );
+            'cast' => 'string',
+        ]
+    ];
 
     /**
      * Colorize an image

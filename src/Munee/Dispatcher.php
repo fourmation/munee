@@ -8,7 +8,9 @@
 
 namespace Fourmation\Munee;
 
+use \Fourmation\Munee\Asset\HeaderSetter;
 use \Fourmation\Munee\Asset\NotFoundException;
+use \Fourmation\Munee\Asset\Registry;
 use \Fourmation\Munee\Asset\Type\CompilationException;
 use \Fourmation\Munee\Request;
 
@@ -24,10 +26,10 @@ class Dispatcher
      *
      * @var array
      */
-    static $defaultOptions = array(
+    static $defaultOptions = [
         'setHeaders' => true,
-        'maxAge' => 0
-    );
+        'maxAge' => 0,
+    ];
 
     /**
      * 1) Initialise the Request
@@ -44,7 +46,7 @@ class Dispatcher
      * @catch NotFoundException
      * @catch ErrorException
      */
-    public static function run(Request $Request, $options = array())
+    public static function run(Request $Request, $options = [])
     {
         try {
             /**
@@ -60,7 +62,7 @@ class Dispatcher
             ) {
                 $headerController = $options['headerController'];
             } else {
-                $headerController = new Asset\HeaderSetter;
+                $headerController = new HeaderSetter;
             }
             /**
              * Initialise the Request
@@ -69,7 +71,7 @@ class Dispatcher
             /**
              * Grab the correct AssetType
              */
-            $AssetType = Asset\Registry::getClass($Request);
+            $AssetType = Registry::getClass($Request);
             /**
              * Initialise the AssetType
              */

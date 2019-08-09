@@ -30,45 +30,45 @@ class Resize extends Filter
      *
      * @var array
      */
-    protected $allowedParams = array(
-        'resize' => array(
-            'arguments' => array(
-                'width' => array(
+    protected $allowedParams = [
+        'resize' => [
+            'arguments' => [
+                'width' => [
                     'alias' => 'w',
                     'regex' => '\d+',
-                    'cast' => 'integer'
-                ),
-                'height' => array(
+                    'cast' => 'integer',
+                ],
+                'height' => [
                     'alias' => 'h',
                     'regex' => '\d+',
-                    'cast' => 'integer'
-                ),
-                'quality' => array(
-                    'alias' => array('q', 'qlty', 'jpeg_quality'),
+                    'cast' => 'integer',
+                ],
+                'quality' => [
+                    'alias' => [ 'q', 'qlty', 'jpeg_quality' ],
                     'regex' => '\d{1,2}(?!\d)|100',
                     'default' => 75,
-                    'cast' => 'integer'
-                ),
-                'exact' => array(
+                    'cast' => 'integer',
+                ],
+                'exact' => [
                     'alias' => 'e',
                     'regex' => 'true|false|t|f|yes|no|y|n',
                     'default' => 'false',
-                    'cast' => 'boolean'
-                ),
-                'stretch' => array(
+                    'cast' => 'boolean',
+                ],
+                'stretch' => [
                     'alias' => 's',
                     'regex' => 'true|false|t|f|yes|no|y|n',
                     'default' => 'false',
-                    'cast' => 'boolean'
-                ),
-                'fill' => array(
+                    'cast' => 'boolean',
+                ],
+                'fill' => [
                     'alias' => 'f',
                     'regex' => 'true|false|t|f|yes|no|y|n',
                     'default' => 'false',
-                    'cast' => 'boolean'
-                ),
-                'fillColour' => array(
-                    'alias' => array(
+                    'cast' => 'boolean',
+                ],
+                'fillColour' => [
+                    'alias' => [
                         'fc',
                         'fillColor',
                         'fillcolor',
@@ -77,14 +77,14 @@ class Resize extends Filter
                         'fillcolour',
                         'fill_colour',
                         'fill-colour'
-                    ),
+                    ],
                     'regex' => '[A-Fa-f0-9]{3}$|^[A-Fa-f0-9]{6}',
                     'default' => 'ffffff',
-                    'cast' => 'string'
-                )
-            )
-        )
-    );
+                    'cast' => 'string',
+                ],
+            ],
+        ],
+    ];
 
     /**
      * Use Imagine to resize an image and return it's new path
@@ -181,6 +181,6 @@ class Resize extends Filter
             ));
         }
 
-        $newImage->save($originalImage, array('jpeg_quality' => $arguments['quality']));
+        $newImage->save($originalImage, [ 'jpeg_quality' => $arguments['quality'] ]);
     }
 }
