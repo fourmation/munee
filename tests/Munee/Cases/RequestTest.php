@@ -85,7 +85,7 @@ class RequestTest extends TestCase
     public function testExtensionNotSupported()
     {
         $_GET = [ 'files' => '/js/foo.jpg,/js/bar.js' ];
-        
+
         $Request = new Request();
 
         $this->expectException(ErrorException::class);

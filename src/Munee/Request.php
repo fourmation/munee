@@ -67,14 +67,14 @@ class Request
      * @var array
      */
     protected $allowedParams = [];
-    
+
     /**
      * Stores the string of raw files passed in from $_GET
      *
      * @var string
      */
     protected $rawFiles;
-    
+
     /**
      * Constructor
      *
@@ -88,27 +88,27 @@ class Request
 
         $this->rawParams = $_GET;
     }
-    
+
     /**
      * Sets the document root.
      *
      * @param string $path
-     * 
+     *
      * @return object
      */
     public function setWebroot($path)
     {
         $this->webroot = $path;
-        
+
         return $this;
     }
-    
+
     /**
      * Sets either an individual _rawParams key - or overwrites the whole array.
      *
      * @param mixed $key
      * @param mixed $value
-     * 
+     *
      * @return object
      */
     public function setRawParam($key, $value = null)
@@ -131,12 +131,12 @@ class Request
     {
         return $this->rawParams;
     }
-    
+
     /**
      * Sets the $rawFiles.
      *
      * @param string $files
-     * 
+     *
      * @return object
      */
     public function setFiles($files)

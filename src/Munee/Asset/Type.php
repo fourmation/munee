@@ -64,7 +64,7 @@ abstract class Type
      * @var Request
      */
     protected $request;
-    
+
     /**
      * Reference to the \Munee\Response class
      *

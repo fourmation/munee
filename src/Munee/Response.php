@@ -62,11 +62,11 @@ class Response
 
     /**
      * Set controller for setting headers.
-     * 
+     *
      * @param object $headerController
-     * 
+     *
      * @return self
-     * 
+     *
      * @throws ErrorException
      */
     public function setHeaderController($headerController)
