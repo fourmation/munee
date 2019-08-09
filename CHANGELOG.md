@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated unit tests to use PHPUnit 8.
 - Updated dependencies.
 - Relaxed dependency requirement ranges.
+- Raised minimum PHP version to 7 and locked to version 7 release line.
+- Revised top level namespace from `Munee` to `Fourmation\Munee`.
 
 ## [1.0.0] - 2012-11-26 -> [1.6.0] - 2015-03-21
 
