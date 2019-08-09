@@ -6,11 +6,11 @@
 | [develop][develop] | [![Build Status][develop-build-travis-badge]][travis] | Not Installed |
 
 <!-- Links -->
-[travis]: https://travis-ci.org/fourmation/munee
+[travis]: https://travis-ci.com/fourmation/munee
 [master]: https://github.com/fourmation/munee/tree/master
-[master-build-travis-badge]: https://travis-ci.org/fourmation/munee.svg?branch=master
+[master-build-travis-badge]: https://travis-ci.com/fourmation/munee.svg?branch=master
 [develop]: https://github.com/fourmation/munee/tree/develop
-[develop-build-travis-badge]: https://travis-ci.org/fourmation/munee.svg?branch=develop
+[develop-build-travis-badge]: https://travis-ci.com/fourmation/munee.svg?branch=develop
 
 On-The-Fly Image Resizing, On-the-fly LESS, SCSS, CoffeeScript Compiling, CSS & JavaScript Combining/Minifying, and Smart Client Side and Server Side Caching
 
