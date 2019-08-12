@@ -6,7 +6,10 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee;
+namespace Fourmation\Munee;
+
+use \Fourmation\Munee\Asset\HeaderSetter;
+use \Fourmation\Munee\Asset\Type;
 
 /**
  * Munee Response Class
@@ -25,14 +28,14 @@ class Response
     /**
      * Instance of a Asset\HeaderSetter class
      *
-     * @var Asset\HeaderSetter
+     * @var HeaderSetter
      */
     public $headerController;
 
     /**
      * Instance of a Asset\Type dynamically instantiated in the Constructor
      *
-     * @var Asset\Type
+     * @var Type
      */
     protected $assetType;
 
@@ -45,11 +48,10 @@ class Response
      */
     public function __construct($AssetType)
     {
-        // Must be a Sub-Class of \Munee\Asset\Type
-        $baseClass = '\\Munee\\asset\\Type';
-        if (! is_subclass_of($AssetType, $baseClass)) {
+        // Must be a Sub-Class of \Fourmation\Munee\Asset\Type
+        if (!$AssetType instanceof Type) {
             throw new ErrorException(
-                get_class($AssetType) . ' is not a sub class of ' . $baseClass
+                get_class($AssetType) . ' is not a sub class of ' . Type::class
             );
         }
 
@@ -60,17 +62,17 @@ class Response
 
     /**
      * Set controller for setting headers.
-     * 
+     *
      * @param object $headerController
-     * 
+     *
      * @return self
-     * 
+     *
      * @throws ErrorException
      */
     public function setHeaderController($headerController)
     {
-        if(! $headerController instanceof Asset\HeaderSetter) {
-            throw new ErrorException('Header controller must be an instance of Asset\HeaderSetter.');
+        if(!$headerController instanceof HeaderSetter) {
+            throw new ErrorException('Header controller must be an instance of ' . HeaderSetter::class . '.');
         }
 
         $this->headerController = $headerController;

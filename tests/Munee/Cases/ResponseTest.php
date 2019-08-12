@@ -6,18 +6,20 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Cases;
+namespace Fourmation\Munee\Cases;
 
-use Munee\Asset\HeaderSetter;
-use Munee\Response;
-use Munee\Mocks\MockAssetType;
+use \Fourmation\Munee\Asset\HeaderSetter;
+use \Fourmation\Munee\ErrorException;
+use \Fourmation\Munee\Mocks\MockAssetType;
+use \Fourmation\Munee\Response;
+use \PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\Response Class
  *
  * @author Cody Lundquist
  */
-class ResponseTest extends \PHPUnit_Framework_TestCase
+class ResponseTest extends TestCase
 {
     /**
      * @var int
@@ -29,7 +31,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(ErrorException::class);
         new Response(new \stdClass());
     }
 
@@ -44,7 +46,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $Response->setHeaderController(new HeaderSetter());
         $Response->setHeaders(0);
 
-        $checkHeaders = array();
+        $checkHeaders = [];
         $checkHeaders['Cache-Control'] = 'max-age=0, must-revalidate';
         $checkHeaders['Content-Type'] = 'text/test';
         $checkHeaders['Last-Modified'] = gmdate('D, d M Y H:i:s', $this->lastModifiedTime) . ' GMT';
@@ -88,7 +90,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $Response->setHeaderController(new HeaderSetter());
         $Response->setHeaders(0);
 
-        $checkHeaders = array();
+        $checkHeaders = [];
         $setHeaders = $this->getHeaders();
 
         $this->assertSame($checkHeaders, $setHeaders);
@@ -116,7 +118,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
         $Response->setHeaderController(new HeaderSetter());
         $Response->setHeaders(0);
 
-        $checkHeaders = array();
+        $checkHeaders = [];
         $checkHeaders['Cache-Control'] = 'max-age=0, must-revalidate';
         $checkHeaders['Content-Type'] = 'text/test';
         $checkHeaders['Last-Modified'] = gmdate('D, d M Y H:i:s', $this->lastModifiedTime) . ' GMT';
@@ -161,8 +163,8 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     protected function getHeaders()
     {
-        $rawHeaders = xdebug_get_headers();
-        $ret = array();
+        $rawHeaders = \xdebug_get_headers();
+        $ret = [];
         foreach ($rawHeaders as $header) {
             $headerParts = explode(':', $header, 2);
             if (2 == count($headerParts)) {

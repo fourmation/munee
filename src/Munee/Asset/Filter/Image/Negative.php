@@ -6,10 +6,10 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Filter\Image;
+namespace Fourmation\Munee\Asset\Filter\Image;
 
-use Munee\Asset\Filter;
-use Imagine\Gd\Imagine;
+use \Fourmation\Munee\Asset\Filter;
+use \Imagine\Gd\Imagine;
 
 /**
  * Negative Filter for Images
@@ -23,12 +23,12 @@ class Negative extends Filter
      *
      * @var array
      */
-    protected $allowedParams = array(
-        'negative' => array(
+    protected $allowedParams = [
+        'negative' => [
             'regex' => 'true|false|t|f|yes|no|y|n',
             'cast' => 'string'
-        )
-    );
+        ]
+    ];
 
     /**
      * Turn an image Negative

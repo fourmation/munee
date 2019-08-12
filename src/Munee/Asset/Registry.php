@@ -6,11 +6,11 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset;
+namespace Fourmation\Munee\Asset;
 
-use Munee\ErrorException;
-use Munee\Request;
-use Closure;
+use \Closure;
+use \Fourmation\Munee\ErrorException;
+use \Fourmation\Munee\Request;
 
 /**
  * Registers extensions against a Closure which will instantiate the Asset Type handler
@@ -20,9 +20,9 @@ use Closure;
 class Registry
 {
     /**
-     * @var string Registered Classes
+     * @var mixed[][] Registered Classes
      */
-    protected static $_registry = array();
+    protected static $_registry = [];
 
     /**
      * Register a resolver with a list of extensions
@@ -60,7 +60,7 @@ class Registry
     /**
      * Return the AssetClass based on the file extension in the Request Class
      *
-     * @param \Munee\Request $Request
+     * @param Request $Request
      *
      * @return Object
      *

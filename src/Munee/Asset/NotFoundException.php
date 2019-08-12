@@ -6,9 +6,9 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset;
+namespace Fourmation\Munee\Asset;
 
-use Munee\ErrorException;
+use \Fourmation\Munee\ErrorException;
 
 /**
  * Class NotFoundException

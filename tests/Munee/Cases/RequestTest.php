@@ -6,17 +6,19 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Cases;
+namespace Fourmation\Munee\Cases;
 
-use Munee\Request;
-use Munee\Utils;
+use \Fourmation\Munee\ErrorException;
+use \Fourmation\Munee\Request;
+use \Fourmation\Munee\Utils;
+use \PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\Request Class
  *
  * @author Cody Lundquist
  */
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestTest extends TestCase
 {
     /**
      * Set Up
@@ -49,7 +51,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $Request = new Request();
 
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(ErrorException::class);
         $Request->init();
     }
 
@@ -58,8 +60,8 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructor()
     {
-        $Request = new Request(array('foo' => 'bar'));
-        $this->assertSame(array('foo' => 'bar'), $Request->options);
+        $Request = new Request([ 'foo' => 'bar' ]);
+        $this->assertSame([ 'foo' => 'bar' ], $Request->options);
     }
 
     /**
@@ -67,16 +69,14 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testInit()
     {
-        $_GET = array(
-            'files' => '/js/foo.js,/js/bar.js'
-        );
+        $_GET = [ 'files' => '/js/foo.js,/js/bar.js' ];
 
         $Request = new Request();
 
         $Request->init();
 
         $this->assertSame('js', $Request->ext);
-        $this->assertSame(array(WEBROOT . '/js/foo.js', WEBROOT . '/js/bar.js'), $Request->files);
+        $this->assertSame([ WEBROOT . '/js/foo.js', WEBROOT . '/js/bar.js' ], $Request->files);
     }
 
     /**
@@ -84,13 +84,11 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testExtensionNotSupported()
     {
-        $_GET = array(
-            'files' => '/js/foo.jpg,/js/bar.js'
-        );
-        
+        $_GET = [ 'files' => '/js/foo.jpg,/js/bar.js' ];
+
         $Request = new Request();
 
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(ErrorException::class);
         $Request->init();
     }
 
@@ -99,14 +97,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGoingAboveWebroot()
     {
-        $_GET = array(
-            'files' => '/../..././js/bad.js,/js/bar.js'
-        );
+        $_GET = [ 'files' => '/../..././js/bad.js,/js/bar.js' ];
 
         $Request = new Request();
 
         $Request->init();
-        $this->assertSame(array(WEBROOT . '/js/bad.js', WEBROOT . '/js/bar.js'), $Request->files);
+        $this->assertSame([ WEBROOT . '/js/bad.js', WEBROOT . '/js/bar.js' ], $Request->files);
     }
 
     /**
@@ -114,16 +110,14 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testLegacyCode()
     {
-        $_GET = array(
-            'files' => '/minify/js/foo.js'
-        );
+        $_GET = [ 'files' => '/minify/js/foo.js' ];
 
         $Request = new Request();
 
         $Request->init();
 
-        $this->assertSame(array(WEBROOT . '/js/foo.js'), $Request->files);
-        $this->assertSame(array('minify' => 'true'), $Request->getRawParams());
+        $this->assertSame([ WEBROOT . '/js/foo.js' ], $Request->files);
+        $this->assertSame([ 'minify' => 'true' ], $Request->getRawParams());
     }
 
     /**
@@ -131,17 +125,17 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetRawParams()
     {
-        $_GET = array(
+        $_GET = [
             'files' => '/js/foo.js,/js/bar.js',
             'minify' => 'true',
-            'notAllowedParam' => 'foo'
-        );
+            'notAllowedParam' => 'foo',
+        ];
 
         $Request = new Request();
 
         $Request->init();
         $rawParams = $Request->getRawParams();
-        $this->assertSame(array('minify' => 'true', 'notAllowedParam' => 'foo'), $rawParams);
+        $this->assertSame([ 'minify' => 'true', 'notAllowedParam' => 'foo' ], $rawParams);
     }
 
     /**
@@ -149,50 +143,45 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testParseParams()
     {
-        $_GET = array(
+        $_GET = [
             'files' => '/js/foo.js,/js/bar.js',
             'foo' => 'true',
             'b' => 'ba[42]',
-            'notAllowedParam' => 'foo'
-
-        );
+            'notAllowedParam' => 'foo',
+        ];
 
         $Request = new Request();
 
         $Request->init();
 
-        $this->assertEquals(array(), $Request->params);
+        $this->assertEquals([], $Request->params);
 
-        $allowedParams = array(
-            'foo' => array(
+        $allowedParams = [
+            'foo' => [
                 'alias' => 'f',
                 'default' => 'false',
                 'cast' => 'boolean'
-            ),
-            'bar' => array(
+            ],
+            'bar' => [
                 'alias' => 'b',
-                'arguments' => array(
-                    'baz' => array(
+                'arguments' => [
+                    'baz' => [
                         'alias' => 'ba',
                         'regex' => '\d+',
                         'cast' => 'integer',
-                        'default' => 24
-                    ),
-                )
-            ),
-            'qux' => array(
-                'default' => 'no'
-            )
-        );
+                        'default' => 24,
+                    ],
+                ]
+            ],
+            'qux' => [ 'default' => 'no' ],
+        ];
 
         $Request->parseParams($allowedParams);
-        $assertedParams = array(
+        $assertedParams = [
             'foo' => true,
-            'bar' => array(
-                'baz' => 42
-            ),
-            'qux' => 'no'
-        );
+            'bar' => [ 'baz' => 42 ],
+            'qux' => 'no',
+        ];
 
         $this->assertSame($assertedParams, $Request->params);
     }
@@ -202,25 +191,25 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function testWrongParamValue()
     {
-        $_GET = array(
+        $_GET = [
             'files' => '/js/foo.js',
-            'foo' => 'not good'
-        );
+            'foo' => 'not good',
+        ];
 
         $Request = new Request();
 
         $Request->init();
 
-        $allowedParams = array(
-            'foo' => array(
+        $allowedParams = [
+            'foo' => [
                 'alias' => 'f',
                 'regex' => 'true|false',
                 'default' => 'false',
                 'cast' => 'boolean'
-            )
-        );
+            ]
+        ];
 
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(ErrorException::class);
         $Request->parseParams($allowedParams);
     }
 }

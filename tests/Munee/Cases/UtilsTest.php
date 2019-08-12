@@ -6,16 +6,17 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Cases;
+namespace Fourmation\Munee\Cases;
 
-use Munee\Utils;
+use \Fourmation\Munee\Utils;
+use \PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\Utils Class
  *
  * @author Cody Lundquist
  */
-class UtilsTest extends \PHPUnit_Framework_TestCase
+class UtilsTest extends TestCase
 {
     /**
      * Can Create/Remove Directories?
@@ -76,8 +77,8 @@ class UtilsTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(Utils::isSerialized($serializedFalse, $isFalse));
         $this->assertFalse($isFalse);
 
-        $checkArray = array('foo' => 'bar');
-        $testArray = array();
+        $checkArray = [ 'foo' => 'bar' ];
+        $testArray = [];
         Utils::isSerialized('a:1:{s:3:"foo";s:3:"bar";}', $testArray);
         $this->assertSame($checkArray, $testArray);
     }

@@ -6,10 +6,10 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Type;
+namespace Fourmation\Munee\Asset\Type;
 
-use Munee\Asset\Type;
-use CoffeeScript;
+use \CoffeeScript\Compiler as CoffeeScriptCompiler;
+use \Fourmation\Munee\Asset\Type;
 
 /**
  * Handles JavaScript
@@ -38,7 +38,7 @@ class JavaScript extends Type
     protected function beforeFilter($originalFile, $cacheFile)
     {
         if ('coffee' == pathinfo($originalFile, PATHINFO_EXTENSION)) {
-            $coffeeScript = CoffeeScript\Compiler::compile(file_get_contents($originalFile), array('header' => false));
+            $coffeeScript = CoffeeScriptCompiler::compile(file_get_contents($originalFile), [ 'header' => false ]);
             file_put_contents($cacheFile, $coffeeScript);
         }
     }
