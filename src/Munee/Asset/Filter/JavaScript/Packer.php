@@ -6,9 +6,9 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Filter\JavaScript;
+namespace Fourmation\Munee\Asset\Filter\JavaScript;
 
-use Munee\Asset\Filter;
+use \Fourmation\Munee\Asset\Filter;
 use \JavaScriptPacker;
 
 /**
@@ -23,24 +23,24 @@ class Packer extends Filter
      *
      * @var array
      */
-    protected $allowedParams = array(
-        'packer' => array(
+    protected $allowedParams = [
+        'packer' => [
             'regex' => 'true|false|t|f|yes|no|y|n',
             'default' => 'false',
-            'cast' => 'boolean'
-        )
-    );
+            'cast' => 'boolean',
+        ]
+    ];
 
     /**
      * Default options for the Packer library
      *
      * @var array
      */
-    protected $_defaultPackerOptions = array(
+    protected $_defaultPackerOptions = [
         'encoding' => 62,
         'fastDecode' => true,
-        'specialChars' => false
-    );
+        'specialChars' => false,
+    ];
 
     /**
      * JavaScript Packer
@@ -53,7 +53,7 @@ class Packer extends Filter
      */
     public function doFilter($file, $arguments, $javaScriptOptions)
     {
-        $userOptions = isset($javaScriptOptions['packer']) ? $javaScriptOptions['packer'] : array();
+        $userOptions = isset($javaScriptOptions['packer']) ? $javaScriptOptions['packer'] : [];
         $options = array_merge($this->_defaultPackerOptions, $userOptions);
 
         if (! $arguments['packer']) {

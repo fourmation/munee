@@ -6,11 +6,11 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Filter\Css;
+namespace Fourmation\Munee\Asset\Filter\Css;
 
-use Munee\Asset\Filter;
-use Munee\Utils;
-use CSSmin;
+use \Fourmation\Munee\Asset\Filter;
+use \Fourmation\Munee\Utils;
+use \tubalmartin\CssMin\Minifier as CSSmin;
 
 /**
  * Minify Filter for CSS
@@ -24,13 +24,13 @@ class Minify extends Filter
      *
      * @var array
      */
-    protected $allowedParams = array(
-        'minify' => array(
+    protected $allowedParams = [
+        'minify' => [
             'regex' => 'true|false|t|f|yes|no|y|n',
             'default' => 'false',
-            'cast' => 'boolean'
-        )
-    );
+            'cast' => 'boolean',
+        ]
+    ];
 
     /**
      * CSS Minification

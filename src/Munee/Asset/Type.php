@@ -6,13 +6,14 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset;
+namespace Fourmation\Munee\Asset;
 
-use Munee\ErrorException;
-use Munee\Request;
-use Munee\Response;
-use Munee\Utils;
-use Munee\Asset\NotFoundException;
+use \Fourmation\Munee\Asset\Filter;
+use \Fourmation\Munee\Asset\NotFoundException;
+use \Fourmation\Munee\ErrorException;
+use \Fourmation\Munee\Request;
+use \Fourmation\Munee\Response;
+use \Fourmation\Munee\Utils;
 
 /**
  * Base Asset Class
@@ -27,14 +28,14 @@ abstract class Type
      *
      * @var array
      */
-    protected $options = array();
+    protected $options = [];
 
     /**
      * Stores the list of filters that will be applied to the requested asset.
      *
      * @var array
      */
-    protected $filters = array();
+    protected $filters = [];
 
     /**
      * Stores the path to the cache directory
@@ -60,14 +61,14 @@ abstract class Type
     /**
      * Reference to the \Munee\Request class
      *
-     * @var \Munee\Request
+     * @var Request
      */
     protected $request;
-    
+
     /**
      * Reference to the \Munee\Response class
      *
-     * @var \Munee\Response
+     * @var Response
      */
     protected $response;
 
@@ -79,7 +80,7 @@ abstract class Type
     /**
      * Constructor
      *
-     * @param \Munee\Request $Request
+     * @param Request $Request
      *
      * @throws NotFoundException
      */
@@ -90,9 +91,9 @@ abstract class Type
         // Pull in filters based on the raw params that were passed in
         $rawParams = $Request->getRawParams();
         $assetShortName = preg_replace('%^.*\\\\%','', get_class($this));
-        $allowedParams = array();
+        $allowedParams = [];
         foreach (array_keys($rawParams) as $filterName) {
-            $filterClass = 'Munee\\Asset\\Filter\\' . $assetShortName . '\\' . ucfirst($filterName);
+            $filterClass = Filter::class . '\\' . $assetShortName . '\\' . ucfirst($filterName);
             if (class_exists($filterClass)) {
                 $Filter = new $filterClass();
                 $allowedParams += $Filter->getAllowedParams();
@@ -123,7 +124,7 @@ abstract class Type
      */
     public function init()
     {
-        $content = array();
+        $content = [];
         foreach ($this->request->files as $file) {
             $cacheFile = $this->generateCacheFile($file);
 
@@ -143,7 +144,7 @@ abstract class Type
      *
      * @param $Response
      *
-     * @throws \Munee\ErrorException
+     * @throws ErrorException
      */
     public function setResponse($Response)
     {
@@ -249,9 +250,9 @@ abstract class Type
         // Run through each filter
         foreach ($this->filters as $filterName => $Filter) {
             $arguments = isset($this->request->params[$filterName]) ?
-                $this->request->params[$filterName] : array();
+                $this->request->params[$filterName] : [];
             if (! is_array($arguments)) {
-                $arguments = array($filterName => $arguments);
+                $arguments = [ $filterName => $arguments ];
             }
             // Do not minify if .min. is in the filename as it has already been minified
             if(strpos($originalFile, '.min.') !== FALSE) {
@@ -301,11 +302,11 @@ abstract class Type
      */
     protected function generateCacheFile($file)
     {
-        $cacheSalt = serialize(array(
+        $cacheSalt = serialize([
             $this->request->options,
             MUNEE_USING_URL_REWRITE,
             MUNEE_DISPATCHER_FILE
-        ));
+        ]);
         $params = serialize($this->request->params);
         $ext = pathinfo($file, PATHINFO_EXTENSION);
 

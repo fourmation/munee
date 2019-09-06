@@ -6,10 +6,10 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Filter\Image;
+namespace Fourmation\Munee\Asset\Filter\Image;
 
-use Munee\Asset\Filter;
-use Imagine\Gd\Imagine;
+use \Fourmation\Munee\Asset\Filter;
+use \Imagine\Gd\Imagine;
 
 /**
  * Grayscale Filter for Images
@@ -23,13 +23,13 @@ class Grayscale extends Filter
      *
      * @var array
      */
-    protected $allowedParams = array(
-        'grayscale' => array(
+    protected $allowedParams = [
+        'grayscale' => [
             'regex' => 'true|false|t|f|yes|no|y|n',
             'default' => 'false',
-            'cast' => 'boolean'
-        )
-    );
+            'cast' => 'boolean',
+        ]
+    ];
 
     /**
      * Turn an image Grayscale

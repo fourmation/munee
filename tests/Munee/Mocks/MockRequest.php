@@ -6,9 +6,9 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Mocks;
+namespace Fourmation\Munee\Mocks;
 
-use Munee\Request;
+use \Fourmation\Munee\Request;
 
 /**
  * Mock Request class for Response Test

@@ -6,25 +6,27 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Cases\Asset;
+namespace Fourmation\Munee\Cases\Asset;
 
-use Munee\Asset\Registry;
-use Munee\Mocks\MockRequest;
-use Munee\Mocks\MockAssetType;
+use \Fourmation\Munee\Asset\Registry;
+use \Fourmation\Munee\ErrorException;
+use \Fourmation\Munee\Mocks\MockAssetType;
+use \Fourmation\Munee\Mocks\MockRequest;
+use \PHPUnit\Framework\TestCase;
 
 /**
  * Tests for the \Munee\asset\Registry Class
  *
  * @author Cody Lundquist
  */
-class RegistryTest extends \PHPUnit_Framework_TestCase
+class RegistryTest extends TestCase
 {
     /**
      * Register some extensions for each test
      */
     protected function setUp()
     {
-        Registry::register(array('foo', 'bar'), function ($Request) {
+        Registry::register([ 'foo', 'bar' ], function ($Request) {
             return new MockAssetType($Request);
         });
     }
@@ -34,7 +36,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      */
     protected function tearDown()
     {
-        Registry::unRegister(array('foo', 'bar'));
+        Registry::unRegister([ 'foo', 'bar' ]);
     }
 
     /**
@@ -54,7 +56,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      */
     public function testExtensionNotSupported()
     {
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(ErrorException::class);
         Registry::getSupportedExtensions('nope');
     }
 
@@ -65,7 +67,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
     {
         $MockRequest = new MockRequest();
         $MockRequest->ext = 'nope';
-        $this->setExpectedException('Munee\ErrorException');
+        $this->expectException(ErrorException::class);
         Registry::getClass($MockRequest);
     }
 
@@ -74,7 +76,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
      */
     public function testSupportedExtensions()
     {
-        $checkExtensions = array('foo', 'bar');
+        $checkExtensions = [ 'foo', 'bar' ];
         $supportedExtensions = Registry::getSupportedExtensions('bar');
 
         $this->assertSame($checkExtensions, $supportedExtensions);
@@ -87,7 +89,7 @@ class RegistryTest extends \PHPUnit_Framework_TestCase
     {
         Registry::unRegister('bar');
 
-        $checkExtensions = array('foo');
+        $checkExtensions = [ 'foo' ];
         $supportedExtensions = Registry::getSupportedExtensions('foo');
 
         $this->assertSame($checkExtensions, $supportedExtensions);

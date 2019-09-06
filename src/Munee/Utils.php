@@ -6,7 +6,9 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee;
+namespace Fourmation\Munee;
+
+use \Fourmation\Munee\ErrorException;
 
 /**
  * Munee Utils Class

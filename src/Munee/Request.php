@@ -6,10 +6,11 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee;
+namespace Fourmation\Munee;
 
-use Munee\ErrorException;
-use Munee\Asset\Registry;
+use \Fourmation\Munee\Asset\NotFoundException;
+use \Fourmation\Munee\Asset\Registry;
+use \Fourmation\Munee\ErrorException;
 
 /**
  * Munee Request Class
@@ -37,49 +38,49 @@ class Request
      *
      * @var array
      */
-    public $params = array();
+    public $params = [];
 
     /**
      * Stores the array of files passed in
      *
      * @var array
      */
-    public $files = array();
+    public $files = [];
 
     /**
      * Stores the array of Request Options
      *
      * @var array
      */
-    public $options = array();
+    public $options = [];
 
     /**
      * Stores the array of Raw $_GET parameters
      *
      * @var array
      */
-    protected $rawParams = array();
+    protected $rawParams = [];
 
     /**
      * Stores the array of allowed parameters for the particular asset being processed
      *
      * @var array
      */
-    protected $allowedParams = array();
-    
+    protected $allowedParams = [];
+
     /**
      * Stores the string of raw files passed in from $_GET
      *
      * @var string
      */
     protected $rawFiles;
-    
+
     /**
      * Constructor
      *
      * @param array $options
      */
-    public function __construct($options = array())
+    public function __construct($options = [])
     {
         $this->options = $options;
         $this->rawFiles = isset($_GET['files']) ? $_GET['files'] : '';
@@ -87,27 +88,27 @@ class Request
 
         $this->rawParams = $_GET;
     }
-    
+
     /**
      * Sets the document root.
      *
      * @param string $path
-     * 
+     *
      * @return object
      */
     public function setWebroot($path)
     {
         $this->webroot = $path;
-        
+
         return $this;
     }
-    
+
     /**
      * Sets either an individual _rawParams key - or overwrites the whole array.
      *
      * @param mixed $key
      * @param mixed $value
-     * 
+     *
      * @return object
      */
     public function setRawParam($key, $value = null)
@@ -130,12 +131,12 @@ class Request
     {
         return $this->rawParams;
     }
-    
+
     /**
      * Sets the $rawFiles.
      *
      * @param string $files
-     * 
+     *
      * @return object
      */
     public function setFiles($files)
@@ -149,7 +150,7 @@ class Request
      * Parses the $rawFiles and does sanity checks
      *
      * @throws ErrorException
-     * @throws Asset\NotFoundException
+     * @throws NotFoundException
      */
     public function init()
     {
@@ -224,7 +225,7 @@ class Request
         foreach ($this->allowedParams as $param => $options) {
             $this->params[$param] = null;
             if (! empty($options['arguments'])) {
-                $this->params[$param] = array();
+                $this->params[$param] = [];
                 foreach ($options['arguments'] as $arg => $opts) {
                     if (! empty($opts['default'])) {
                         $cast = ! empty($opts['cast']) ? $opts['cast'] : 'string';
@@ -249,7 +250,7 @@ class Request
     protected function getParamOptions($checkParam)
     {
         if (isset($this->allowedParams[$checkParam])) {
-            return array('param' => $checkParam, 'options' => $this->allowedParams[$checkParam]);
+            return [ 'param' => $checkParam, 'options' => $this->allowedParams[$checkParam] ];
         } else {
             foreach ($this->allowedParams as $param => $options) {
                 if (! empty($options['alias']) && in_array($checkParam, (array) $options['alias'])) {
@@ -271,12 +272,12 @@ class Request
      *
      * @return string|array
      *
-     * @throws \Munee\ErrorException
+     * @throws ErrorException
      */
     protected function getParamValue($param, $paramOptions, $value)
     {
         if (! empty($paramOptions['arguments'])) {
-            $ret = array();
+            $ret = [];
             foreach ($paramOptions['arguments'] as $arg => $opts) {
                 $p = $arg;
                 if (! empty($opts['alias'])) {
@@ -320,7 +321,7 @@ class Request
                 $value = (integer) $value;
                 break;
             case 'boolean';
-                $value = in_array($value, array('true', 't', 'yes', 'y'));
+                $value = in_array($value, [ 'true', 't', 'yes', 'y' ]);
                 break;
             case 'string':
             default:

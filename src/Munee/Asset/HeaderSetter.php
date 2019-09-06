@@ -6,7 +6,7 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset;
+namespace Fourmation\Munee\Asset;
 
 /**
  * Handles setting HTTP headers.
@@ -21,28 +21,28 @@ class HeaderSetter
      * @param string $protocol
      * @param string $code
      * @param string $message
-     * 
+     *
      * @return object
      */
     public function statusCode($protocol, $code, $message)
     {
         header("{$protocol} {$code} {$message}");
-        
+
         return $this;
     }
-    
+
     /**
      * Set HTTP header field/value.
      *
      * @param string $field
      * @param string $value
-     * 
+     *
      * @return object
      */
     public function headerField($field, $value)
     {
         header("{$field}: {$value}");
-        
+
         return $this;
     }
 }

@@ -6,7 +6,7 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset;
+namespace Fourmation\Munee\Asset;
 
 /**
  * Filter to manipulate images
@@ -20,7 +20,7 @@ abstract class Filter
      *
      * @var array
      */
-    protected $allowedParams = array();
+    protected $allowedParams = [];
 
     /**
      * Getter for $allowedParams

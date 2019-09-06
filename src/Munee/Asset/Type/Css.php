@@ -6,15 +6,16 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Type;
+namespace Fourmation\Munee\Asset\Type;
 
-use Munee\Utils;
-use Munee\Asset\Type;
-use lessc;
-use Leafo\ScssPhp\Compiler as ScssCompiler;
-use Sabberworm\CSS\Parser as CssParser;
-use Sabberworm\CSS\Property\Import;
-use Sabberworm\CSS\Value\URL;
+use \Fourmation\Munee\Asset\Type;
+use \Fourmation\Munee\Asset\Type\CompilationException;
+use \Fourmation\Munee\Utils;
+use \Leafo\ScssPhp\Compiler as ScssCompiler;
+use \lessc;
+use \Sabberworm\CSS\Parser as CssParser;
+use \Sabberworm\CSS\Property\Import;
+use \Sabberworm\CSS\Value\URL;
 
 /**
  * Handles CSS
@@ -28,10 +29,10 @@ class Css extends Type
      *
      * @var array
      */
-    protected $options = array(
+    protected $options = [
         'lessifyAllCss' => false,
-        'scssifyAllCss' => false
-    );
+        'scssifyAllCss' => false,
+    ];
 
     /**
      * Set additional headers just for CSS
@@ -239,7 +240,7 @@ class Css extends Type
             }
 
             $url = $basePath . '/' . $originalUrl;
-            $url = str_replace(array('../', './'), '', $url);
+            $url = str_replace([ '../', './' ], '', $url);
         }
 
         // If not using URL Rewrite

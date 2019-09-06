@@ -6,11 +6,10 @@
  * @license http://opensource.org/licenses/mit-license.php
  */
 
-namespace Munee\Asset\Filter\Image;
+namespace Fourmation\Munee\Asset\Filter\Image;
 
-use Munee\Asset\Filter;
-use Imagine\Gd\Imagine;
-use Imagine\Image\Color;
+use \Fourmation\Munee\Asset\Filter;
+use \Imagine\Gd\Imagine;
 
 /**
  * Colorize Filter for Images
@@ -24,12 +23,12 @@ class Colorize extends Filter
      *
      * @var array
      */
-    protected $allowedParams = array(
-        'colorize' => array(
+    protected $allowedParams = [
+        'colorize' => [
             'regex' => '[A-Fa-f0-9]{3}$|^[A-Fa-f0-9]{6}',
-            'cast' => 'string'
-        )
-    );
+            'cast' => 'string',
+        ]
+    ];
 
     /**
      * Colorize an image

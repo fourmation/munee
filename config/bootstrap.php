@@ -1,6 +1,17 @@
 <?php
 
-use Munee\Asset\Registry;
+/**
+ * @todo This file violates PSR-1, it should be refactored.
+ * "A file SHOULD declare new symbols (classes, functions, constants, etc.) and cause no other side effects,
+ * or it SHOULD execute logic with side effects, but SHOULD NOT do both."
+ */
+
+use \Fourmation\Munee\Asset\Registry;
+use \Fourmation\Munee\Asset\Type\Css;
+use \Fourmation\Munee\Asset\Type\Image;
+use \Fourmation\Munee\Asset\Type\JavaScript;
+use \Fourmation\Munee\Request;
+
 // DIRECTORY_SEPARATOR alias
 defined('DS') || define('DS' , DIRECTORY_SEPARATOR);
 // Define Sub-Folder the Munee Dispatcher file is in
@@ -28,20 +39,20 @@ if (function_exists('mb_internal_encoding')) {
 /**
  * Register the CSS Asset Class with the extensions .css, .less, and .scss
  */
-Registry::register(array('css', 'less', 'scss'), function (\Munee\Request $Request) {
-    return new \Munee\Asset\Type\Css($Request);
+Registry::register([ 'css', 'less', 'scss' ], function (Request $Request) {
+    return new Css($Request);
 });
 
 /**
  * Register the JavaScript Asset Class with the extension .js
  */
-Registry::register(array('js', 'coffee'), function (\Munee\Request $Request) {
-    return new \Munee\Asset\Type\JavaScript($Request);
+Registry::register([ 'js', 'coffee' ], function (Request $Request) {
+    return new JavaScript($Request);
 });
 
 /**
  * Register the Image Asset Class with the extensions .jpg, .jpeg, .gif, and .png
  */
-Registry::register(array('jpg', 'jpeg', 'gif', 'png'), function (\Munee\Request $Request) {
-    return new \Munee\Asset\Type\Image($Request);
+Registry::register([ 'jpg', 'jpeg', 'gif', 'png' ], function (Request $Request) {
+    return new Image($Request);
 });
